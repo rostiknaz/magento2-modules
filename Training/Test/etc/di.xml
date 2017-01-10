@@ -1,0 +1,50 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Training\Test\Api\ProductRepositoryInterface"
+                type="Magento\Catalog\Model\ProductRepository" />
+    <preference for="Training\Test\Model\Config\ConfigInterface"
+                type="Training\Test\Model\Config" />
+    <!--<preference for="Magento\Catalog\Controller\Product\View"-->
+                <!--type="Training\Test\Controller\Product\View" />-->
+    <type name="Training\Test\MagentoU\Test">
+        <arguments>
+            <argument name="justAParameter" xsi:type="string">Hello world!</argument>
+            <!--<argument name="data" xsi:type="array">-->
+                <!--<item name="test-array-item">Test Array Item!!!</item>-->
+            <!--</argument>-->
+        </arguments>
+    </type>
+    <type name="Training\Test\Plugin\Footer">
+        <arguments>
+            <argument name="context" xsi:type="object">Magento\Framework\View\Element\Context</argument>
+        </arguments>
+    </type>
+    <!--<type name="Training\Test\Controller\Action\Index">-->
+        <!--<arguments>-->
+            <!--<argument name="context" xsi:type="object">Magento\Framework\View\Element\Context</argument>-->
+        <!--</arguments>-->
+    <!--</type>-->
+
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="training" xsi:type="array">
+                    <item name="class"
+                          xsi:type="string">Training\Test\Controller\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">70</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="change_product1" type="Training\Test\Plugin\Product" sortOrder="1"/>
+    </type>
+    <type name="Magento\Theme\Block\Html\Footer">
+        <plugin name="change_footer" type="Training\Test\Plugin\Footer" sortOrder="1"/>
+    </type>
+    <type name="Magento\Theme\Block\Html\Breadcrumbs">
+        <plugin name="change_breadcrumbs" type="Training\Test\Plugin\Breadcrumbs" sortOrder="1"/>
+    </type>
+</config>
